@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>05. Practique resolviendo problemas del dia a dia</title>
+</head>
+<body>
+
+  <h1>Programa calcular IMC</h1>
+ 
+  <script>
+
+    function saltarlinea() {
+      document.write("<br>");
+      document.write("<br>");
+      document.write("<br>");
+    }
+
+    function imprimir(frase) {
+      document.write(frase);
+      saltarlinea();
+    }
+
+    function calcularIMC(peso, altura) {
+        return (peso / (altura * altura));
+    }
+
+    var nombre = prompt("Informe su nombre");
+    var peso = prompt(nombre + ", informe su peso");
+    var altura = prompt(nombre + ", informe su altura");
+
+    imcCalculado = calcularIMC(peso, altura);
+
+    imprimir(nombre + ", su IMC calculado es: " + imcCalculado);
+
+  </script>
+
+</body>
+</html>
