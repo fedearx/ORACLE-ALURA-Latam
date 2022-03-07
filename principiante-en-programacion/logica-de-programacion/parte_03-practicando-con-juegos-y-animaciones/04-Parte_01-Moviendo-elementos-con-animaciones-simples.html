@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>04. Moviendo elementos con animaciones simples</title>
+</head>
+<body>
+	<main>
+		<canvas width="600" height="400">
+
+		</canvas>
+
+
+		<script>
+			var pantalla = document.querySelector("canvas");
+			var pincel = pantalla.getContext("2d");
+
+			pincel.fillStyle = "lightgrey";
+			pincel.fillRect(0, 0, 600, 400);
+
+			function disenarCircunferencia(x, y, radio) {
+				pincel.fillStyle = "blue"; 						// color
+				pincel.beginPath();										// voy a comenzar a dibujar
+				pincel.arc(x, y, radio, 0, 2*Math.PI);
+				pincel.fill();												// llena la circunferencia
+			}
+
+			function limpiarPantalla() {
+				pincel.clearRect(0, 0, 600, 400);    // limpia la pantalla
+			}
+
+			var x = 0;
+
+			function actualizarPantalla() {
+				limpiarPantalla();
+				disenarCircunferencia(x, 20, 10);
+				x++;
+			}
+
+			setInterval(actualizarPantalla, 10);
+
+			// disenarCircunferencia(20, 20, 10);
+	
+		</script>
+	</main>
+</body>
+</html>
