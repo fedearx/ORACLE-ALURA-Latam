@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>05. Nuestro primer juego</title>
+</head>
+<body>
+	<main>
+		<canvas width="600" height="400">
+
+		</canvas>
+
+
+		<script>
+			var pantalla = document.querySelector("canvas");
+			var pincel = pantalla.getContext("2d");
+
+			pincel.fillStyle = "lightgrey";
+			pincel.fillRect(0, 0, 600, 400);
+
+			var radio = 10;
+			var xaleatorio;
+			var yaleatorio;
+
+			function disenarCircunferencia(x, y, radio, color) {
+				pincel.fillStyle = color;
+				pincel.beginPath();
+				pincel.arc(x, y, radio, 0, 2*Math.PI);
+				pincel.fill();
+			}
+
+			function limpiarPantalla() {
+				pincel.clearRect(0, 0, 600, 400);    // limpia la pantalla
+			}
+
+			function disenarObjetivo(x, y) {
+				disenarCircunferencia(x, y, radio + 20, "red");
+				disenarCircunferencia(x, y, radio + 10, "white");
+				disenarCircunferencia(x, y, radio, "red");
+			}
+
+			function sortearPosicion(maximo) {
+				return Math.floor(Math.random() * maximo);     			// redondea para abajo
+			}
+
+			var x = 0;
+
+			function actualizarPantalla() {
+				limpiarPantalla();
+				xaleatorio = sortearPosicion(600);
+				yaleatorio = sortearPosicion(400);
+				disenarObjetivo(xaleatorio, yaleatorio);	
+				x++;
+			}
+
+			setInterval(actualizarPantalla, 1000);
+
+			function disparar(evento) {
+
+				var x = evento.pageX - pantalla.offsetLeft;
+				var y = evento.pageY - pantalla.offsetTop;
+				
+				if ((x < xaleatorio + radio) && 
+						(x > xaleatorio - radio) && 
+						(y < yaleatorio + radio) && 
+						(y > yaleatorio - radio)) {
+					alert("Tiro Certero");
+				}
+			}
+
+			pantalla.onclick = disparar;
+	
+		</script>
+	</main>
+</body>
+</html>
